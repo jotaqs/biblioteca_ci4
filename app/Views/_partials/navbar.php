@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg mb-3">
   <div class="container">
-    <?=anchor("#","Biblioteca",['class' => 'navbar-brand'])?>
+    <b><?=anchor("#","Biblioteca",['class' => 'navbar-brand'])?></b>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
         <?=anchor("Autor/index","Autor",['class' => 'nav-link active'])?>
         </li>
         <li class="nav-item">
-        <?=anchor("Usuario/index","Usuario",['class' => 'nav-link active'])?>
+        <?=anchor("Usuario/index","Usuário",['class' => 'nav-link active'])?>
         </li>
         <li class="nav-item">
           <?=anchor("Editora/index","Editora",['class' => 'nav-link active',])?>
@@ -25,7 +25,7 @@
           <?=anchor("Livro/index","Livro",['class' => 'nav-link active', 'aria-current'=>'page',])?>
         </li>
         <li class="nav-item">
-          <?=anchor("Emprestimo/index","Emprestimo",['class' => 'nav-link active', 'aria-current'=>'page',])?>
+          <?=anchor("Emprestimo/index","Empréstimo",['class' => 'nav-link active', 'aria-current'=>'page',])?>
         </li>
     </div>
   </div>

@@ -1,96 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700; /* Negrito */
+        }
+    </style>
+</head>
+</html>
+
+
 <div class="container">
-    <h2>Emprestimo</h2>
-        <!-- Button do Modal -->
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Novo
-        </button>
-        <!-- Tabela de Usuario -->
-    <table class="table">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>DATA DE INICIO</td>
-            <td>DATA DO FIM</td>
-            <td>DATA DO PRAZO</td>
-            <td>ALUNO</td>
-            <td>USUARIO</td>
-        </tr>
-        </thead>
-        <tbody>
-            <?php foreach($listaEmprestimo as $em) :?>
-                <tr>
-                    <td>
-                        <?=$em['id']?>
-                    </td>
-                    <td>
-                        <?=anchor("Emprestimo/editar/".$em['id'],$em['data_inicio'])?>
-                    </td>
-                    <td>
-                        <?=$em['data_fim']?>
-                    </td>
-                    <td>
-                        <?=$em['data_prazo']?>
-                    </td>
-                    <td>
-                    <?php
-                        foreach($listaAluno as $aluno){
-                            $alunos[$aluno['id']] = $aluno['nome'];
-                        }
-                        ?>
-                        <?=$alunos[$em['id_aluno']]?>
-                    </td>
-                    <td>
-                    <?php
-                        foreach($listaUsuario as $usuario){
-                            $usuarios[$usuario['id']] = $usuario['nome'];
-                        }
-                        ?>
-                        <?=$usuarios[$em['id_usuario']]?>
-                    </td>
-                </tr>
-            <?php endforeach ?>  
-        </tbody>
-    </table>
+    <h2>Editoras</h2>
+    <!-- Button do Modal -->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Novo
+    </button>
+
+    <!-- Blocos de Editoras -->
+    <div class="row mt-3">
+        <?php foreach ($listaEditora as $e) : ?>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= anchor("Editora/editar/".$e['id'], $e['nome']) ?></h5>
+                        <p class="card-text">ID: <?= $e['id'] ?></p>
+                        <p class="card-text">Email: <?= $e['email'] ?></p>
+                        <p class="card-text">Telefone: <?= $e['telefone'] ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <?=form_open("Emprestimo/cadastrar")?> 
+<?=form_open("Editora/cadastrar")?> 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Emprestimo</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Nova Editora</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="data_inicio">Data de Inicio:</label>
-                    <input class='form-control' type="text" id='data_inicio' name='data_inicio'>
+                    <label for="nome">Nome:</label>
+                    <input class='form-control' type="text" id='nome' name='nome'>
                 </div>
                 <div class="form-group">
-                    <label for="data_fim">Data do Fim:</label>
-                    <input class='form-control' type="text" id='data_fim' name='data_fim'>
+                    <label for="e-mail">Email:</label>
+                    <input class='form-control' type="text" id='email' name='email'>
                 </div>
                 <div class="form-group">
-                    <label for="data_prazo">Data do Prazo:</label>
-                    <input class='form-control' type="text" id='data_prazo' name='data_prazo'>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Aluno:</label>
-                    <select class='form-select' name="id_aluno" id="id_aluno" required>
-                        <option>Selecione um Aluno</option>
-                        <?php foreach($listaAluno as $aluno) : ?>
-                            <option value="<?=$aluno['id']?>"><?=$aluno['nome']?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Usuario:</label>
-                    <select class='form-select' name="id_usuario" id="id_usuario" required>
-                        <option>Selecione um Usuario</option>
-                        <?php foreach($listaUsuario as $usuario) : ?>
-                            <option value="<?=$usuario['id']?>"><?=$usuario['nome']?></option>
-                        <?php endforeach ?>
-                    </select>
+                    <label for="telefone">Telefone:</label>
+                    <input class='form-control' type="text" id='telefone' name='telefone'>
                 </div>
             </div>
             <div class="modal-footer">
